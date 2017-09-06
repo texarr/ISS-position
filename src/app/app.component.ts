@@ -4,7 +4,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 interface UserResponse {
   name: string,
   latitude: number,
-  longitude: number
+  longitude: number,
+  results: string
 }
 
 @Component({
@@ -19,26 +20,27 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngOnInit():void {
+  ngOnInit() {
     var url = 'https://api.wheretheiss.at/v1/satellites/25544';
     var lat;
     var lon;
     var mapUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
     var mapApiKey = '&key=AIzaSyAi5ihE7UwQGr_qdRmL6_f5FLOeiJAQKWI';
     var geoCodingUrl = mapUrl;
+    var currentLocation;
 
     this.http.get<UserResponse>(url).subscribe(
       data => {
-        console.log("My name is" + data.name);
-        console.log("Latitude " + data.latitude);
-        console.log("longitude " + data.longitude);
         geoCodingUrl += '?latlng=' + data.latitude + ',' + data.longitude + mapApiKey;
-        console.log(geoCodingUrl);
 
         // geocoding get
         this.http.get<UserResponse>(geoCodingUrl).subscribe(
           data => {
             console.log(data);
+            if (data.results.length != 0) {
+                data.results["0"].formatted_address;
+            }
+
           },
           (err: HttpErrorResponse) => {
             if (err.error instanceof Error) {
