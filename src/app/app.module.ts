@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { MyPositionComponent } from './my-position/my-position.component';
@@ -14,7 +16,8 @@ import { MyMissionComponent } from './my-mission/my-mission.component';
     MyMissionComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
