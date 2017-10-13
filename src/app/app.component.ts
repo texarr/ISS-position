@@ -34,22 +34,23 @@ export class AppComponent implements OnInit {
         geoCodingUrl += '?latlng=' + data.latitude + ',' + data.longitude + mapApiKey;
 
         // geocoding get
-        this.http.get<UserResponse>(geoCodingUrl).subscribe(
-          data => {
-            console.log(data);
-            if (data.results.length != 0) {
-                data.results["0"].formatted_address;
-            }
+          this.http.get<UserResponse>(geoCodingUrl).subscribe(
+            data => {
+              console.log(data);
+              if (data.results.length != 0) {
+                  data.results["0"].formatted_address;
+              }
 
-          },
-          (err: HttpErrorResponse) => {
-            if (err.error instanceof Error) {
-              console.log("Client-side error occured");
-            } else {
-              console.log("Server-side error occured");
+            },
+            (err: HttpErrorResponse) => {
+              if (err.error instanceof Error) {
+                console.log("Client-side error occured");
+              } else {
+                console.log("Server-side error occured");
+              }
             }
-          }
-        )
+          )
+
 
       },
       (err: HttpErrorResponse) => {
