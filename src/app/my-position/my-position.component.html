@@ -1,14 +1,37 @@
-<section class="success" id="my_position">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2>My current position</h2>
-                <hr class="star-light">
-            </div>
-        </div>
-        <div class="row">
-            <p>api response here</p>
-            <div ng-app="myApp" ng-controller="myCtrl"></div>
-        </div>
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2>My current position</h2>
+      </div>
     </div>
+    <div class="row">
+      <table
+        class="table table-bordered"
+        *ngIf="issPosition">
+        <tr>
+          <th>Name</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Altitude</th>
+          <th>Velocity</th>
+          <th>Visibility</th>
+          <th>Timestamp</th>
+          <th>Daynum</th>
+          <th>Units</th>
+        </tr>
+        <tr>
+          <td>{{ issPosition.name }}</td>
+          <td>{{ issPosition.latitude | number:'1.3-3' }}</td>
+          <td>{{ issPosition.longitude | number:'1.3-3' }}</td>
+          <td>{{ issPosition.altitude | number:'1.3-3' }}</td>
+          <td>{{ issPosition.velocity | number:'1.3-3' }}</td>
+          <td>{{ issPosition.visibility }}</td>
+          <td>{{ issPosition.timestamp }}</td>
+          <td>{{ issPosition.daynum | number:'1.3-3' }}</td>
+          <td>{{ issPosition.units }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </section>
