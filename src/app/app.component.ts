@@ -27,9 +27,9 @@ export class AppComponent implements OnInit {
       (response: IssPositionModel) => {
         this.issCurrentPosition = response;
       }, (error: HttpErrorResponse) => {
-        console.log(error);
+        // show error modal
       }, () => {
-        console.log(this.issCurrentPosition);
+        // show confirmation modal
       }
     );
   }
