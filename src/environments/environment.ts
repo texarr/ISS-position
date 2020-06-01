@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  mapUrl: 'https://maps.googleapis.com/maps/api/geocode/json',
+  mapApiKey: '&key=AIzaSyAi5ihE7UwQGr_qdRmL6_f5FLOeiJAQKWI'
 };

@@ -1,65 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-
-interface UserResponse {
-  name: string,
-  latitude: number,
-  longitude: number,
-  results: string
-}
+import { ApiService } from './services/api-service.service';
+import { take } from 'rxjs/operators';
+import { IssPositionModel } from './models/iss-position-model';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   title = 'International Space Station';
+  issCurrentPosition: IssPositionModel;
 
-  constructor(private http: HttpClient) {
-
+  constructor(
+    private apiService: ApiService
+  ) {
   }
 
   ngOnInit() {
-    var url = 'https://api.wheretheiss.at/v1/satellites/25544';
-    var lat;
-    var lon;
-    var mapUrl = 'https://maps.googleapis.com/maps/api/geocode/json';
-    var mapApiKey = '&key=AIzaSyAi5ihE7UwQGr_qdRmL6_f5FLOeiJAQKWI';
-    var geoCodingUrl = mapUrl;
-    var currentLocation;
+    this.getPosition();
+  }
 
-    this.http.get<UserResponse>(url).subscribe(
-      data => {
-        geoCodingUrl += '?latlng=' + data.latitude + ',' + data.longitude + mapApiKey;
-
-        // geocoding get
-          this.http.get<UserResponse>(geoCodingUrl).subscribe(
-            data => {
-              console.log(data);
-              if (data.results.length != 0) {
-                  data.results["0"].formatted_address;
-              }
-
-            },
-            (err: HttpErrorResponse) => {
-              if (err.error instanceof Error) {
-                console.log("Client-side error occured");
-              } else {
-                console.log("Server-side error occured");
-              }
-            }
-          )
-
-
-      },
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          console.log("Client-side error occured");
-        } else {
-          console.log("Server-side error occured");
-        }
+  getPosition() {
+    this.apiService.getIssPosition('25544').pipe(take(1)).subscribe(
+      (response: IssPositionModel) => {
+        this.issCurrentPosition = response;
+      }, (error: HttpErrorResponse) => {
+        console.log(error);
+      }, () => {
+        console.log(this.issCurrentPosition);
       }
-    )
+    );
   }
 }

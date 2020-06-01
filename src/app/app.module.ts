@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { MyPositionComponent } from './my-position/my-position.component';
 import { MyMissionComponent } from './my-mission/my-mission.component';
+import { ApiService } from './services/api-service.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { MyMissionComponent } from './my-mission/my-mission.component';
     BrowserModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
