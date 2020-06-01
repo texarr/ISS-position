@@ -5,6 +5,7 @@
         <h2>My current position</h2>
       </div>
     </div>
+
     <div class="row">
       <table
         class="table table-bordered"
@@ -32,6 +33,10 @@
           <td>{{ issPosition.units }}</td>
         </tr>
       </table>
+    </div>
+
+    <div class="row">
+      <div class="col btn btn--primary" (click)="getPosition()">Get position</div>
     </div>
   </div>
 </section>
