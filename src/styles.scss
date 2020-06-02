@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+$primary: #673ab7;
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+
+  &--primary {
+    color: $primary;
+    border: 1px solid $primary;
+  }
+
+  &--disabled {
+    cursor: default;
+  }
+
+  &__spinner {
+    margin-left: 10px;
+  }
+}

@@ -8,6 +8,7 @@ import { IssPositionModel } from '../../models/iss-position-model';
 })
 export class MyPositionComponent implements OnInit {
   @Input() issPosition: IssPositionModel;
+  @Input() disabled = false;
   @Output() handlePositionRequest: EventEmitter<void> = new EventEmitter();
 
   constructor() { }

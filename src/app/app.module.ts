@@ -6,6 +6,10 @@ import { ApiService } from './services/api-service.service';
 import { AboutComponent } from './components/about/about.component';
 import { MyPositionComponent } from './components/my-position/my-position.component';
 import { MyMissionComponent } from './components/my-mission/my-mission.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   declarations: [
@@ -16,7 +20,11 @@ import { MyMissionComponent } from './components/my-mission/my-mission.component
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule,
+    MatSnackBarModule,
+    MatTabsModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]

@@ -1,6 +1,5 @@
 {
   "rulesDirectory": [
-    "node_modules/tslint"
   ],
   "rules": {
     "arrow-return-shorthand": true,
