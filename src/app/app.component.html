@@ -12,7 +12,10 @@
   </div>
 </header>
 
-<mat-tab-group>
+<mat-tab-group
+  (animationDone)="onTabSwitch()"
+  (selectedIndexChange)="handleCurrentTabChange($event)"
+>
   <mat-tab label="Info">
     <app-about></app-about>
 
@@ -26,6 +29,24 @@
   </mat-tab>
 
   <mat-tab label="Map">
-    map component here
+    <button type="button"
+            class="col-2 offset-5 btn btn--primary"
+            [ngClass]="requestPending? 'btn--disabled': ''"
+            (click)="getPosition(true)"
+            [disabled]="requestPending">
+      <span class="btn__text" *ngIf="!requestPending">Get position</span>
+      <span class="btn__spinner" *ngIf="requestPending">
+        <mat-spinner
+          [color]="'primary'"
+          [diameter]="20"
+        ></mat-spinner>
+      </span>
+    </button>
+
+    <div class="mapContainer"
+         leaflet
+         [leafletOptions]="leafletOptions"
+         (leafletMapReady)="onMapReady($event)"
+    ></div>
   </mat-tab>
 </mat-tab-group>
