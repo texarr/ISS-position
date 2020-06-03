@@ -1,5 +1,6 @@
 # ISS Position
-Simple Single Page App based on Angular. It shows current position of International Space Station.
+Simple Single Page App based on Angular 9.
+Shows current position of International Space Station.
 
 ## API http://wheretheiss.at/w/developer
 ## Geocoding https://developers.google.com/maps/documentation/geocoding/intro#ReverseGeocoding
